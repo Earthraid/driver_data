@@ -27,7 +27,7 @@ defmodule Output do
 
   defp print_report(report) when is_list(report) do
     report
-    |> Enum.map(fn %{name: name, average_speed: average_speed, distance: distance} ->
+    |> Stream.map(fn %{name: name, average_speed: average_speed, distance: distance} ->
       if distance != 0 do
         IO.puts("#{name}: #{distance} miles @ #{average_speed} mph")
       else

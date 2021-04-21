@@ -12,13 +12,13 @@ defmodule TripCalculator do
   defp sort_and_calculate(content) do
     content
     |> String.split("\n")
-    |> Enum.map(fn line -> String.split(line, " ") end)
+    |> Stream.map(fn line -> String.split(line, " ") end)
     |> driver_or_trip()
   end
 
   defp driver_or_trip(content) do
     content
-    |> Enum.reject(fn entry -> entry == [""] end)
+    |> Stream.reject(fn entry -> entry == [""] end)
     |> Enum.reduce([], fn entry, acc ->
       case List.first(entry) do
         "Driver" ->
